@@ -7,7 +7,6 @@ N = int(input())
 A = list(map(int, input().split()))
 
 gcd = my_gcd(*A)
-#print(gcd)
 
 def divs(n):
     cnt = 0

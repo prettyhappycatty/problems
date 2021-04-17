@@ -22,6 +22,3 @@ while i < len(S):
 #    print(i, cnt, bef)
     i += 1
 print(cnt)
-
-
-    

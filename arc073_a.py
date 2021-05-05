@@ -10,5 +10,6 @@ for i in range(N):
     until = now+T
 
 
-print(until-rest_during)
+print(until-rest_d
+uring)
 

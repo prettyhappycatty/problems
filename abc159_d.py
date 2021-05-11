@@ -1,5 +1,3 @@
-#TLE
-
 N = int(input())
 a = list(map(int, input().split()))
 
@@ -11,23 +9,13 @@ for i in range(N):
     dic[a[i]] += 1
 
 #print(dic)
-msum_0 = []
-msum_1 = []
-
+mul_all = 0
 for key in dic.keys():
-    msum_1.append(int((dic[key]-1)*(dic[key]-2) /2))
-    msum_0.append(int(dic[key]*(dic[key]-1) /2))
+    mul_all += dic[key]*(dic[key]-1)/2
 
-print(msum_0)
-print(msum_1)
 
 for i in range(N): 
-    mulsum = 0
-    j = 0
-    for key, value in enumerate(dic.items()):
-        if key == a[i]:
-            mulsum += msum_1[key-1]
-        else:
-            mulsum += msum_0[key-1]
-    j += 1
-    print(mulsum)
+    minus = dic[a[i]]*(dic[a[i]]-1)/2
+    plus = (dic[a[i]]-2)*(dic[a[i]]-1)/2
+    tmp_mull =  mul_all + plus - minus
+    print(int(tmp_mull))

@@ -5,10 +5,8 @@ H, W= map(int, input().split())
 
 A = []
 memo =  [['' for i in range(W)] for j in range(H)]
-#print(memo)
 
 def cell(x, y, ary):
-    #print(ary)
     if ary[x][y] == "+":
         return 1
     elif ary[x][y] == "-":
@@ -21,12 +19,9 @@ def q(ary, memo):
         return memo
     for i in range(H-1, -1, -1):
         for j in range(W-1, -1, -1):
-            #print(i,j)
-            #print(cell(i,j, ary))
             fugou = (i+j) % 2
             times = (-1)**fugou
             if j+1 == len(ary[0]) and i+1 == len(ary):
-                #memo[i][j] = times*cell(i,j,ary)
                 memo[i][j] = 0
                 continue
             elif j+1 >= len(ary[0]) :
@@ -46,9 +41,6 @@ for i in range(H):
     A.append(tmp_A)
 
 cnt_memo = q(A,memo)
-
-#print(cnt_memo)
-#print(cnt_memo)
 
 if cnt_memo[0][0] > 0:
     print("Takahashi")

@@ -1,49 +1,61 @@
 N, K = map(int, input().split())
 
 A = []
+max_A = 0
+
+
+lim = K*K //2 + 1
+
 for i in range(N):
     tmpA = list(map(int,input().split()))
+    for j in range(len(tmpA)):
+        if max_A < tmpA[j]:
+            max_A = tmpA[j]
     A.append(tmpA)
 
 #print(A)
-def kosuu(k,ary):
-    ret = 0
-    for i in range(len(ary)):
-        if k < ary[i]:
-            ret += 1
-    return ret
+def ruisekiwa(k):
+    B = [[0 for i in range(N+5)] for j in range(N+5)]
+    #print(B)
+    for x in range(N):
+        for y in range(N):
+            a_tmp = 1 if A[x][y] > k else 0
+            B[x+1][y+1] = B[x][y+1] + B[x+1][y] - B[x][y] + a_tmp
+    #print(k, B)
+    #smallest = 10e9
+    ext = False
+    for x in range(N - K + 1):
+        for y in range(N - K + 1):
+            tmp_med =  - B[x][y+K] - B[x+K][y] + B[x][y] + B[x+K][y+K]
+            #print(B)
 
-def getmed(k, ary):#二分探索
-    left = 0
-    right = 800 * 800 
-    while right-left >1:
-        mid = (right+left)//2
-        #print('p=',mid)
-        v = kosuu(mid, ary) # 2分した真ん中の積載量を出す
-        #print(right,left,mid)
-        if v < k*k//2 + 1:
-            #print(v,'>=',k//2)
-            right = mid
+            if tmp_med < lim:
+                #print(True)
+                ext = True
+    return ext
+
+#for i in range(10):
+    #print(i)
+#    print(i, ruisekiwa(i))
+#        exit()
+
+def getmed(k,ary):#二分探索
+    #rui = ruisekiwa(k)
+    #print(rui)
+    ok,ng = -1,10**9+1
+
+    while ng-ok>1:
+        m = (ng+ok)//2
+#        print(ok,ng)
+        judge =ruisekiwa(m)
+#        print(m, judge)
+        if judge:
+            ng = m
         else:
-            left = mid
+            ok = m
 
-    return right, v
+    return ng
 
-#ある区間KxKの配列セット
-area_set =[]
-smallest = 10e9
-smallest_v = 0
-for i in range(N-K+1):
-    tmp_set = []
-    for j in range(K):
-        for k in range(K):
-            tmp_set.append(A[i+j][i+k])
-    tmp_med, v = getmed(K, tmp_set)#時間かかりそう
+right = getmed(K, A)
 
-    if smallest > tmp_med:
-        smallest = tmp_med
-
-
-#print(area_set)
-
-print(v+1)
+print(right)

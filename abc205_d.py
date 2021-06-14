@@ -1,42 +1,29 @@
-#TLE
+import bisect
 
 K, Q = map(int, input().split())
 
 A = list(map(int, input().split()))
+A.sort()
 
-Q_list = []
-for i in range(Q):
-    Q_tmp = int(input())
-    Q_list.append(Q_tmp)
-
-
-A_dic = {}
+B = [0] * K
 for i in range(K):
-    A_dic[A[i]] = True
+    B[i] = A[i] - (i+1) 
 
-
+#print(B)
 #print(A)
-def ruisekiwa(k):
-    B = [0 for i in range(K+1)]
-    #print(B)
-    for x in range(K):
-        #print(x)
-        a_tmp = 1 if A[x] <= k else 0
-        B[x+1] = B[x] + a_tmp
-    #print(B)
-    return B[K]
 
 for i in range(Q):
-    tmp = Q_list[i]
-    c = ruisekiwa(tmp) #それ未満の個数が何個
-    #みまんの数が何個
-    d = tmp + c
-    #print(tmp,c, d)
-    while d < Q_list[i] or d in A_dic.keys():
-        tmp = tmp + 1
-        c = ruisekiwa(tmp) #それ未満の個数が何個
-        d = tmp + c
-    #    print(tmp,c, d)
-
-    print(d)
+    tmp = int(input())
+    #print(tmp, A[0], A[K-1])
+    if tmp < A[0]:
+        print(tmp)
+        #print("1->", tmp)
+    elif tmp > A[K-1]:
+        print(int(tmp + K))
+        #print("2->", int(tmp + K))
+    else:
+        idx = bisect.bisect_left(B, tmp) -1
+        print(A[idx] + tmp - B[idx])
+        #print("3->", A[idx] + tmp - B[idx])
+        #print(A[idx],tmp,B[idx])
 

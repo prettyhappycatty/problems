@@ -1,3 +1,4 @@
+#余事象を使う問題
 H, W = list(map(int, input().split()))
 
 H_sum = [0]*H
@@ -23,4 +24,3 @@ for i in range(H):
         tmp_ary.append(H_sum[i]+W_sum[j]-ary[i][j])
     print(*tmp_ary)
         
-#Todo

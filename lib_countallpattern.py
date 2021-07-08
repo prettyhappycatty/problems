@@ -1,7 +1,6 @@
 import copy
 k = 3
 #パターンの数え上げ
-
 ret = [[i] for i in range(2)]
 
 print(ret)

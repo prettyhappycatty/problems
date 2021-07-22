@@ -27,7 +27,7 @@ def lcs(X, Y):
     #        if len(s[i][j]) > len(maxs):
     #            maxs = s[i][j]
 
-
+        #文字順を復元
         lcs_str = ''
         i, j = m-1, n-1
         while i >= 0 and j >= 0:
@@ -43,5 +43,8 @@ def lcs(X, Y):
 
     return maxl, lcs_str
 
-l, st = lcs('abracadabra', 'avadakedavra')
-print(l, st)
+
+s = input()
+t = input()
+
+print(lcs(s, t)[1])

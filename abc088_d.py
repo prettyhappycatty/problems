@@ -1,4 +1,4 @@
-import queue
+from collections import deque
 
 h,w = map(int, input().split())
 
@@ -26,12 +26,16 @@ visited[ssx][ssy] = 1
 
 neigh = [(0, 1), (1, 0), (-1, 0), (0, -1)]
 
-q = queue.Queue()
+q = deque([])
 
-q.put((ssx, ssy))
+q.append((ssx, ssy))
+
+if cxy[ssx][ssy] == "#" or cxy[ggx][ggy] == "#":
+    print(-1)
+    exit()
 
 while q:
-    s = q.get()
+    s = q.popleft()
     #print(neigh)
     for nei in neigh:
         #print(nei[0],nei[1])
@@ -55,7 +59,7 @@ while q:
                 print(white - 1 - length[x][y])
                 exit()
             else:
-                q.put((x,y))
+                q.append((x,y))
                 #print(cxy[x][y])
 
 

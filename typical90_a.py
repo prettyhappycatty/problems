@@ -1,3 +1,5 @@
+#typical90_001 答えで二分探索 binary search
+
 N, L = map(int, input().split())
 K = int(input())
 A = list(map(int, input().split()))

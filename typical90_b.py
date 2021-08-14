@@ -1,3 +1,5 @@
+#typical90_002 制約からエスパー、map set deque bitset bit全探索
+
 from copy import copy
 
 N = int(input())

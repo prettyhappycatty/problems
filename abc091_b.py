@@ -28,6 +28,7 @@ for i in range(len(s)):
         tmp_m = s[i][1] - t[s[i][0]]
     else:
         tmp_m = s[i][1]
+        
     if tmp_m > m:
         m = tmp_m
     #print(s[i][0], s[i][1])

@@ -21,12 +21,18 @@ for i in range(N):
         cnt_t_1 += 1
 
 and_set = set(s_ar) ^ set(t_ar)
-print(s_ar)
-print(t_ar)
-print(and_set)
+#print(s_ar)
+#print(t_ar)
+#print(and_set)
+
+cnt = 0
+
 
 if cnt_s_1 == cnt_t_1:
-    print(len(and_set))
+    for i in range(len(t_ar)):
+        if s_ar[i] != t_ar[i]:
+            cnt += 1
+    print(cnt)
 else:
     print(-1)
 #print(cnt_s_1, cnt_t_1, diff, s_group_1,  t_group_1, diff_group_diff)

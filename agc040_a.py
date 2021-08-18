@@ -1,17 +1,36 @@
 S = input()
+a = []
 
-i = 0
-bef = ''
-gl_cnt = 0
+right = {}
+left = {}
+
 cnt = 0
-
-while i < len(S):
-    if i > 0 and bef != S[i]:
-        gl_cnt += (1 + cnt)*(cnt)/2
-        print(cnt, (1+cnt)*(cnt)/2, gl_cnt)
+left[0] = 0
+for i in range(len(S)):
+    if S[i] == '<':
+        cnt += 1
+    else:
         cnt = 0
-    bef = S[i]
-    i += 1
-    cnt += 1
+    left[i+1] = cnt
 
-print(gl_cnt)
+cnt = 0
+right[len(S)] = 0
+for i in range(len(S)-1, -1, -1):
+    if S[i] == '>':
+        cnt += 1
+    else:
+        cnt = 0
+    right[i] = cnt
+
+a_sum = 0
+a_ary = []
+#print(right, left)
+for i in range(len(S)+1):
+    a_sum += max(left[i], right[i])
+    a_ary.append(max(left[i], right[i]))
+
+#print(a_ary)
+
+print(a_sum)    
+        
+        

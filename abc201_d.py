@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit(400000000)
+sys.setrecursionlimit(4000000)
 
 H, W= map(int, input().split())
 

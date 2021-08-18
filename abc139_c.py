@@ -8,7 +8,7 @@ s = 0 #start_index
 bef = s
 e = s + 1 #end_index
 i = 0
-while e < N: # (0, 5)
+while e < N: # (0, 5)   
 #    print(s, e, bef, e-s,m, A[s], A[bef], A[e])
     if A[bef] >= A[e]:#次に降りたつ # 10 > 4
         bef = e

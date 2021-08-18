@@ -8,6 +8,6 @@ for i in range(N):
 sum_a = 0
 for i in range(len(A)):
     sum_a += A[i]
-    if K < sum_a:
+    if K <= sum_a:
         print(i+1)
         break

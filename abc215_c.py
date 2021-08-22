@@ -7,6 +7,8 @@ S = sorted(S,reverse=False)
 
 all = list(itertools.permutations(S, len(S)))
 
+#print(all)
+
 ar = []
 for i in range(len(all)):
     lst = list(all[i])

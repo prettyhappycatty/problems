@@ -1,14 +1,8 @@
 N = int(input())
-
 A = list(map(int, input().split()))
-
 Q = int(input())
-
 B = []
-
-
 A.sort()
-
 
 def solve(n):#二分探索
     left = 0

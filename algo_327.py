@@ -20,7 +20,7 @@ def eratosthenes():
 				if j-1 >= n:
 					break
 				#ret[j-1] = -1
-				if ret[j-1] > -1:
+				if ret[j-1] > -1:#合成数だったreturn
 					return ret[j-1]
 	return ret
 

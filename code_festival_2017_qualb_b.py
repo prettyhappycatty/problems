@@ -23,5 +23,6 @@ for key in T_dic.keys():
     else:
         if D_dic[key] < T_dic[key]:
             print("NO")
+            exit()
 
 print("YES")

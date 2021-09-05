@@ -1,55 +1,56 @@
-import sys
-sys.setrecursionlimit(100000000)
-from collections import deque
-
 H, W = map(int, input().split())
 rs, cs = map(int, input().split())
 rg, cg = map(int, input().split())
 
+# 0-indexに変更
+rs -= 1
+cs -= 1
+rg -= 1
+cg -= 1
+
 S = []
-
-neighbor = [(0,1),(1,0),(0,-1),(-1,0)]
-
-F = [[[10**9 for _ in range(4)] for _ in range(W)] for _ in range(H)]
-flg = [[-1 for _ in range(W)] for _ in range(H)]
-
-
 for i in range(H):
-    tmp = input()
-    S.append(tmp)
+    tmpS = input()
+    S.append(tmpS)
 
 #print(S)
-for i in range(4):
-    F[rs-1][cs-1][i] = 0
 
+from collections import deque
 
-Q = deque()
-for i in range(4):
-    Q.append((rs-1, cs-1, i))
+def bfs(now, g, h, w, S):
+    neigh = [[0,1],[0,-1],[1,0],[-1,0]]
+    C = [[[10**9 for _ in range(4)] for _ in range(w)] for _ in range(h)]#距離の初期化
+    queue = deque([now])
+    for j in range(4):
+        C[now[0]][now[1]][j] = 0 # 自分との距離は0 start地点のマトリックスは全方向１
 
-while Q:
-#    print(current[0],current[1])
-    current = Q.popleft()
-    i = current[2]
-    nei = neighbor[i]
-    x = current[0] + nei[0]
-    y = current[1] + nei[1]
-    if x < 0 or y < 0 or x > H-1 or y > W-1 or S[x][y] == "#":
-#            print("con")
-        continue
+    while queue:
+        #rint(queue)
+        v = queue.popleft()
+        #print(v)
+        for i in range(len(neigh)):#g[v]:
+            x = v[0]+neigh[i][0]
+            y = v[1]+neigh[i][1]
+            if 0<= x < h and 0<= y < w and S[x][y] != "#":
+                chg_flg = False
+                for j in range(4):
+                    if i == j and C[x][y][j] > C[v[0]][v[1]][i]: #方向転換しないとき
+                        C[x][y][j] = C[v[0]][v[1]][i]
+                        chg_flg = True
+                    elif C[x][y][j] > C[v[0]][v[1]][i]+1: #方向転換する
+                        C[x][y][j] = C[v[0]][v[1]][i]+1
+                        chg_flg = True
+                if chg_flg == True: #変更があった場合はもういっかいキューに戻す
+                    queue.append((x,y))
+                    #print(C[x][y][0])
+        #print(C)
+    #print(g[0],g[1])
+    return min(C[g[0]][g[1]])
 
-#        print(x,y,i,F[x][y][i],">?",F[current[0]][current[1]][i],nei[0] == vec[0] and nei[1] == vec[1])
-    for j in range(len(neighbor)):
-        if i == j and  F[x][y][i] > F[current[0]][current[1]][i]:#方向が変わらない
-            F[x][y][j] = F[current[0]][current[1]][i]
-            flg[x][y] = 1
-            Q.append((x,y,i))
-        elif i != j and F[x][y][j] > F[current[0]][current[1]][i]+1: #方向が変わるけど最小値の場合
-            F[x][y][j] = F[current[0]][current[1]][i]+1
-            flg[x][y] = 1
-            Q.append((x,y,i))
-        
+start, goal = (rs, cs), (rg, cg)
+ans = bfs(start, goal,H, W, S)
 
-#print(F)
-print(min(F[rg-1][cg-1][0], F[rg-1][cg-1][1],F[rg-1][cg-1][2],F[rg-1][cg-1][3]))
-
+if ans == 10**9:
+    print(-1)
+else:
+    print(ans)

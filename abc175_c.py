@@ -6,8 +6,8 @@ if X < 0:
 plus = X % D
 minus = abs(plus - D)
 
-times = X // D #Kの偶奇が一致する場合にplus, 一致しない場合にminus
-#print(plus, minus)
+times = X // D
+#Kの偶奇が一致する場合にplus, 一致しない場合にminus
 if K >= times:
     if times % 2 == K % 2:
         print(plus)

@@ -1,3 +1,5 @@
+#n進数
+
 N, K = map(int, input().split())
 
 def change8to10(s):#sはString

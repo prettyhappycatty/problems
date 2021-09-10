@@ -1,3 +1,5 @@
+#トポロジカルソート、DAG Directed Acyclic Graph
+
 import sys
 sys.setrecursionlimit(1000000)
 
@@ -8,6 +10,7 @@ edges = []
 for i in range(N):
     edges.append([])
 
+# 始点の判定につかう入次数
 indeg = [0]*N
 
 for i in range(M):
@@ -15,6 +18,8 @@ for i in range(M):
     edges[x-1].append(y-1)
     indeg[y-1] += 1
 
+# 閉路のない有効グラフにはトポロジカルソートが存在する。
+# length[i]: iを始点とするパスのうち、最も長いものの長さを管理。
 length = [0] * N
 done = [False] * N
 

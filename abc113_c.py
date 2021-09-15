@@ -7,7 +7,7 @@ for i in range(M):
 
 ary2 = sorted(ary, key=lambda x:x[1])
 ary2 = sorted(ary2, key=lambda x:x[0])
-print(ary)
+#print(ary)
 
 bef_pref = 0
 bef_city = 0

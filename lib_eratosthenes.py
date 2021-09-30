@@ -1,7 +1,5 @@
 import math
 
-
-
 def eratosthenes(n):
     ret = [i for i in range(1, n+1)]
     for i in range(1, math.floor(math.sqrt(n))+1):
@@ -14,4 +12,4 @@ def eratosthenes(n):
                 ret[j-1] = -1
     print(ret) 
 
-eratosthenes(1000)
+eratosthenes(100)

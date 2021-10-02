@@ -12,4 +12,4 @@ def eratosthenes(n):
                 ret[j-1] = -1
     print(ret) 
 
-eratosthenes(100)
+eratosthenes(1000)

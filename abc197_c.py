@@ -38,29 +38,38 @@ for l in range(len(lst)):#間
         ar[j].append(b)
         i += 1
 
-    print(ar)
+    #print(ar)
     #print(ar1, ar2)
     #a = int(b1, 0) ^ int(b2, 0)
+
+    ary_bs = []
     for i in range(len(ar)):
+        #ret = 1
         for j in range(len(ar[i])):
             if j == 0:
                 b = ar[i][j]
             else:
-                b = ar[i][j] or b
-        if i == 0:
-            ret = b
-        else:
-            ret = ret ^ b
-#        print("b", ret)
+                b = int(bin(ar[i][j] or b), 0)
+        ary_bs.append(b)
 
-    smallest = min(ret, smallest)
     #print("sm", smallest)
     
+    #print(ary_bs)
+
+    for i in range(len(ary_bs)):
+        if i == 0:
+            ret = ary_bs[i]
+        else:
+            ret = ary_bs[i] ^ ret
+
+        #print("b", ret, ary_bs[i])
+    smallest = min(ret, smallest)
 #print(j,a)
 #print(a, smallest)
 
 print(smallest)
 
-#print(int(bin(7 ^ 5 ^ 1),0))
-#print(int(bin(7),0) ^ int(bin(5 or 7),0))
+#print(int(bin(1 or 3),0))
+#print(int(bin(3 or 1),0))
+#print(int(bin(1 or 3),0) ^ int(bin(3 or 1),0))
     

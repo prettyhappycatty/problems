@@ -1,42 +1,67 @@
 N = int(input())
 A = list(map(int, input().split()))
 
-A_map = {}
+#print(A)
 
-def intTotf(i):
-    ret = []
-    j = 8
-    cnt = 0
-    while j >= 0:
-        bi = (i+1) // (2**j)
-        rest = (i+1) % (2**j) #あまり部分
-        print(i, j, bi, rest)
-        if bi == 1:
-            print(A[j-1])
-            ret.append(A[j-1])
-            cnt += A[j-1]
-            cnt = cnt % 200
-            print(cnt)
-        j -= 1
-    return ret, cnt
-        
+rest = {}
 
-mod_map = {}
-flg = 0
-for i in range(2**8):
-    ary, m = intTotf(i)
-    print(ary, m)
-    if m not in mod_map.keys():
-        mod_map[m] = ary
-    else:
-        print("Yes")
-        print(mod_map[m])
-        print(ary)
-        flg = 1
-        break
+max_len = min(len(A),9)
+A =A[0:max_len]
+N = max_len
 
-if flg == 0:
-    print("No")
+#print(rest)
+
+for i in range(N):
+    r = A[i]%200
+    if r not in rest.keys():
+        rest[r]=[]
+    rest[r].append(i+1)
+    #print(r, rest)
+
+#print(len(rest))
+
+import itertools
+
+lst = list(itertools.product([0,1], repeat=len(rest)))#最悪10**60になるのでNG
+
+rest_list = list(rest.items())
+#print(rest_list)
+if len(rest) == 1:
+    print("Yes")
+    print("1", rest_list[0][1][0])
+    print("1", rest_list[0][1][1])
+    exit()
+
+#print(lst)
+if len(lst)>1:
+    cnt_1= []
+    str_1 = []
+    for l in range(1,len(lst)):
+        cnt1 = 0
+        str1 = []
+        ll = lst[l]
+        for i in range(len(rest)):
+            if ll[i] == 1:
+                cnt1 = (cnt1 + A[i]) % 200
+                str1.append(i+1)
+        str_1.append(str1)
+        cnt_1.append(cnt1)
+
+#print(str_1)
+#print(cnt_1)
+
+for i in range(len(cnt_1)):
+    for j in range(i+1, len(cnt_1)):
+        if cnt_1[i]%200 == cnt_1[j]%200:
+            print("Yes")
+            print(len(str_1[i]), *str_1[i])
+            print(len(str_1[j]), *str_1[j])
+            exit()
 
 
-        
+#print(str_1, cnt_1)
+
+#print("Yes")
+#print(len(str1), *str1)
+print("No")
+

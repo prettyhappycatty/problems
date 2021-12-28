@@ -1,3 +1,5 @@
+#いもす法
+
 N, W = map(int, input().split())
 
 dic = {}

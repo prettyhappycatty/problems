@@ -13,3 +13,4 @@ def change10to2(s):#sはString
     return sum9
 
 print(change10to2(str(N)).replace("1","2"))
+
